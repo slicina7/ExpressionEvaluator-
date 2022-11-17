@@ -1,13 +1,13 @@
 package ba.unsa.etf.rpr;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        String izraz="";
+        for(String s: args)
+            izraz= izraz + s + " ";
+        double rez=ExpressionEvaluator.evaluate(izraz);
+        System.out.println("Rezultat: "+ rez);
     }
 }
