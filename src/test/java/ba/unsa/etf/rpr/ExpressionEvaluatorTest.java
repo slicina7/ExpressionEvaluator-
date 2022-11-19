@@ -13,8 +13,8 @@ class ExpressionEvaluatorTest {
     }
     @Test
     void oduzimanje() {
-        String izraz="( 10 - ( -5 + ( 2 - 1 ) ) )";
-        assertEquals(10 - ( -5 + ( 2 - 1 ) ),ExpressionEvaluator.evaluate(izraz));
+        String izraz="( 10 - ( -5 - ( 2 - 1 ) ) )";
+        assertEquals(10 - ( -5 - ( 2 - 1 ) ),ExpressionEvaluator.evaluate(izraz));
     }
     @Test
     void mnozenje() {
@@ -28,7 +28,28 @@ class ExpressionEvaluatorTest {
     }
     @Test
     void korijen() {
-        String izraz="( sqrt ( sqrt ( sqrt 100 ) ) )";
-        assertEquals(Math.sqrt(Math.sqrt(Math.sqrt(100))),ExpressionEvaluator.evaluate(izraz));
+        String izraz="( 1 + sqrt ( 350 ) )";
+        assertEquals(1+Math.sqrt(350),ExpressionEvaluator.evaluate(izraz));
     }
+    @Test
+    void izuzetak1(){
+        String izraz="";
+        assertThrows(RuntimeException.class, ()->ExpressionEvaluator.evaluate(izraz),"Netacno");
+    }
+    @Test
+    void izuzetak2(){
+        String izraz="( 1 + 3 + 2 )";
+        assertThrows(RuntimeException.class, ()->ExpressionEvaluator.evaluate(izraz),"Netacno");
+    }
+    @Test
+    void izuzetak3(){
+        String izraz="( ( 2 + 3 )";
+        assertThrows(RuntimeException.class, ()->ExpressionEvaluator.evaluate(izraz),"Netacno");
+    }
+    @Test
+    void izuzetak4(){
+        String izraz="2 + 5";
+        assertThrows(RuntimeException.class, ()->ExpressionEvaluator.evaluate(izraz),"Netacno");
+    }
+
 }

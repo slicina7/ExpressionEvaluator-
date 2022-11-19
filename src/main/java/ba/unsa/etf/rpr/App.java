@@ -1,13 +1,22 @@
 package ba.unsa.etf.rpr;
 
-public class App 
+public class App
 {
     public static void main( String[] args )
     {
-        String izraz="";
-        for(String s: args)
-            izraz= izraz + s + " ";
-        double rez=ExpressionEvaluator.evaluate(izraz);
-        System.out.println("Rezultat: "+ rez);
+        if(args.length==0) {
+            System.out.printf("Nije unesen izraz!");
+
+        }else {
+            String izraz = "";
+            for (String s : args)
+                izraz = izraz + s;
+            try {
+                double rez = ExpressionEvaluator.evaluate(izraz);
+                System.out.println("Rezultat: " + rez);
+            } catch (RuntimeException poruka) {
+                System.out.println(poruka.getMessage());
+            }
+        }
     }
 }
